@@ -2,11 +2,11 @@
 
 Team:
 
-* Person 1 - Which microservice?
+* Khalid - Auto Sales
 * Person 2 - Which microservice?
 
 ## Design
-
+We will be using BootStrap for the design
 ## Service microservice
 
 Explain your models and integration with the inventory
