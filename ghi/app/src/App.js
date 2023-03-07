@@ -2,6 +2,7 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import AddSalesPerson from './AddSalesPersonForm';
 import MainPage from './MainPage';
 import Nav from './Nav';
+import AddPotentialCustomerForm from './PotentialCustomerForm';
 
 
 function App() {
@@ -10,6 +11,8 @@ function App() {
       <Nav />
       <div className="container">
         <Routes>
+          
+          <Route path="Potentialcustomer" element={< AddPotentialCustomerForm />} />
           <Route path="AddSalesPerson" element={<AddSalesPerson />} />
           <Route path="/" element={<MainPage />} />
         </Routes>
