@@ -16,6 +16,7 @@ class Technician(models.Model):
 
 # appointment model
 class Service(models.Model):
+    vin = models.CharField(max_length=17, unique=True)
     reason = models.TextField()
     appointment_time = models.DateTimeField()
     customer_name = models.CharField(max_length=200)
@@ -25,6 +26,9 @@ class Service(models.Model):
         related_name="service",
         on_delete=models.CASCADE
     )
+
+    def __str__(self):
+        return self.vin
 
     def get_api_url(self):
         return reverse("api_appointment", kwargs={"pk": self.id})
