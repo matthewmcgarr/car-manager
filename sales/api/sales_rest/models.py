@@ -1,14 +1,15 @@
 from django.db import models
-
+from django.urls import reverse
 
 class AutomobileVO(models.Model):
-    color = models.CharField(max_length=50)
-    year = models.PositiveSmallIntegerField()
     vin = models.CharField(max_length=17, unique=True)
-    model_name = models.CharField(max_length=100)
+    import_href = models.CharField(max_length=200, unique=True, default="")
 
     def __str__(self):
         return self.vin
+
+    def get_api_url(self):
+        return reverse("api_automobilevo", kwargs={"vin": self.vin})
 
 class SalesPersons(models.Model):
     name = models.CharField(max_length=255)
@@ -17,6 +18,8 @@ class SalesPersons(models.Model):
     def __str__(self):
         return f"{self.name} ({self.employee_number})"
 
+    def get_api_url(self):
+        return reverse("api_salespersons", kwargs={"pk": self.id})
 
 class Customer(models.Model):
     name = models.CharField(max_length=255)
@@ -26,19 +29,11 @@ class Customer(models.Model):
     def __str__(self):
         return self.name
 
-
-class Automobile(models.Model):
-    make = models.CharField(max_length=255)
-    model = models.CharField(max_length=255)
-    year = models.IntegerField()
-    vin = models.CharField(max_length=17, unique=True)
-
-    def __str__(self):
-        return f"{self.make} {self.model} ({self.year})"
-
+    def get_api_url(self):
+        return reverse("api_customer", kwargs={"pk": self.id})
 
 class Sale(models.Model):
-    automobile = models.ForeignKey(Automobile, on_delete=models.CASCADE)
+    automobile = models.ForeignKey(AutomobileVO, on_delete=models.CASCADE)
     sales_person = models.ForeignKey(SalesPersons, on_delete=models.CASCADE)
     customer = models.ForeignKey(Customer, on_delete=models.CASCADE)
     price = models.DecimalField(max_digits=10, decimal_places=2)
@@ -46,3 +41,6 @@ class Sale(models.Model):
 
     def __str__(self):
         return f"{self.automobile} sold by {self.sales_person} to {self.customer} for ${self.price}"
+
+    def get_api_url(self):
+        return reverse("api_sale", kwargs={"pk": self.id})

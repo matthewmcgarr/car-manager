@@ -55,7 +55,7 @@ function Nav() {
                 className="nav-link"
                 activeClassName="active"
                 exact
-                to="/sales"
+                to="/SaleRecord"
               >
                 Sale Record
               </NavLink>
@@ -65,7 +65,7 @@ function Nav() {
                 className="nav-link"
                 activeClassName="active"
                 exact
-                to="/sales"
+                to="/AllSales"
               >
                 All Sales
               </NavLink>
@@ -77,7 +77,7 @@ function Nav() {
                 exact
                 to="/salespeople/history"
               >
-                Sales Person's Sales History
+                Sales Person's History
               </NavLink>
             </li>
           </ul>
