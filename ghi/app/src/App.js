@@ -13,14 +13,7 @@ import ServiceHistory from "./service/ServiceHistory";
 import TechnicianForm from "./service/TechnicianForm";
 import TechnicianList from "./service/TechnicianList";
 import ServiceDetail from "./service/ServiceDetail";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
 import SalesPersonForm from "./sales/SalesPersonForm";
-import MainPage from "./MainPage";
-import Nav from "./Nav";
-import AddPotentialCustomerForm from "./sales/PotentialCustomerForm";
-import CreateSaleRecord from "./sales/CreateSalesRecordForm";
-import ListSales from "./sales/ListAllSales";
-import SalesPersonSales from "./sales/SalesPersonSales";
 
 function App() {
   return (

@@ -28,8 +28,18 @@ const ServiceHistory = () => {
   };
 
   const getServicesFiltered = () => {
+    if (filterCategory === "") {
+      return services;
+    }
+
+    if (filterCategory === "vip") {
+      return services.filter(
+        (service) =>
+          service[filterCategory] === (filterTerm.toLowerCase() === "yes")
+      );
+    }
     return services.filter((service) =>
-      service[filterCategory].includes(filterTerm)
+      service[filterCategory].toLowerCase().includes(filterTerm.toLowerCase())
     );
   };
 
@@ -74,14 +84,19 @@ const ServiceHistory = () => {
   return (
     <>
       <hr></hr>
-      <select onChange={handleFilterCategory}>
-        <option value="vin">Vin</option>
-        <option value="customer_name">Customer</option>
-        <option value="technician">Technician</option>
-        <option value="reason">Reason</option>
-        <option value="vip">VIP</option>
-      </select>
-      <input onChange={handleFilterChange} />
+      <div class="input-group mb-3">
+        <select onChange={handleFilterCategory}>
+          <option value="vin">Vin</option>
+          <option value="customer_name">Customer</option>
+          <option value="reason">Reason</option>
+          <option value="vip">VIP</option>
+        </select>
+        <input
+          onChange={handleFilterChange}
+          class="form-control"
+          placeholder="search"
+        />
+      </div>
       <hr></hr>
       <table className="table table-striped">
         <thead>
