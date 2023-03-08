@@ -36,7 +36,7 @@ class Sale(models.Model):
     automobile = models.ForeignKey(AutomobileVO, on_delete=models.CASCADE)
     sales_person = models.ForeignKey(SalesPersons, on_delete=models.CASCADE)
     customer = models.ForeignKey(Customer, on_delete=models.CASCADE)
-    price = models.DecimalField(max_digits=10, decimal_places=2)
+    price = models.FloatField()
     date_sold = models.DateField(auto_now_add=True)
 
     def __str__(self):

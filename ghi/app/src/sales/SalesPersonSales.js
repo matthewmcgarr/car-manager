@@ -6,7 +6,7 @@ function SalesPersonSales() {
   const [sales, setSales] = useState([]);
 
   const getSalespeople = async () => {
-    const response = await fetch('http://localhost:8200/api/salespeople/');
+    const response = await fetch('http://localhost:8090/api/salespeople/');
     if (response.ok) {
       const data = await response.json();
       setSalespeople(data.salespeople);
@@ -20,7 +20,7 @@ function SalesPersonSales() {
   const handleSalespersonChange = async (event) => {
     const selectedSalespersonId = event.target.value;
     setSelectedSalesperson(selectedSalespersonId);
-    const response = await fetch(`http://localhost:8400/api/sales/?salesperson=${selectedSalespersonId}`);
+    const response = await fetch(`http://localhost:8090/api/sales/${selectedSalespersonId}`);
     if (response.ok) {
       const data = await response.json();
       setSales(data.sales);
@@ -45,7 +45,7 @@ function SalesPersonSales() {
               <option value="">Select salesperson...</option>
               {salespeople.map(sp => {
                 return (
-                  <option key={sp.id} value={sp.id}>{`${sp.first_name} ${sp.last_name}`}</option>
+                  <option key={sp.id} value={sp.id}>{`${sp.first_name}`}</option>
                 )
               })}
             </select>

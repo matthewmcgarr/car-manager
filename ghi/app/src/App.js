@@ -1,12 +1,11 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import AddSalesPersonForm from './AddSalesPersonForm';
-import AddSalesPerson from './AddSalesPersonForm';
+import SalesPersonForm from './sales/SalesPersonForm';
 import MainPage from './MainPage';
 import Nav from './Nav';
-import AddPotentialCustomerForm from './PotentialCustomerForm';
-import CreateSaleRecord from './CreateSalesRecordForm';
-import ListSales from './ListAllSales';
-import SalesPersonSales from './SalesPersonSales';
+import AddPotentialCustomerForm from './sales/PotentialCustomerForm';
+import CreateSaleRecord from './sales/CreateSalesRecordForm';
+import ListSales from './sales/ListAllSales';
+import SalesPersonSales from './sales/SalesPersonSales';
 
 
 function App() {
@@ -15,11 +14,11 @@ function App() {
       <Nav />
       <div className="container">
         <Routes>
-          <Route path="salespeople/history" element={< SalesPersonSales />} />
-          <Route path="AllSales" element={< ListSales />} />
-          <Route path="SaleRecord" element={< CreateSaleRecord />} />
-          <Route path="Potentialcustomer" element={< AddPotentialCustomerForm />} />
-          <Route path="AddSalesPerson" element={<AddSalesPerson />} />
+          <Route path="salespeople/history/New" element={< SalesPersonSales />} />
+          <Route path="AllSales/New" element={< ListSales />} />
+          <Route path="SaleRecord/New" element={< CreateSaleRecord />} />
+          <Route path="Potentialcustomer/New" element={< AddPotentialCustomerForm />} />
+          <Route path="SalesPerson/New" element={<SalesPersonForm />} />
           <Route path="/" element={<MainPage />} />
         </Routes>
       </div>

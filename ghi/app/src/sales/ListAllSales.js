@@ -4,9 +4,10 @@ function ListSales() {
   const [sales, setSales] = useState([]);
 
   const fetchSales = async () => {
-    const response = await fetch('http://localhost:8400/api/sales/');
+    const response = await fetch('http://localhost:8090/api/sales/');
     if (response.ok) {
       const data = await response.json();
+      console.log("data;", data)
       setSales(data.sales);
     }
   };
@@ -29,15 +30,18 @@ function ListSales() {
           </tr>
         </thead>
         <tbody>
-          {sales.map((sale) => (
+          {sales.map((sale) => {
+            return (
+
             <tr key={sale.id}>
-              <td>{`${sale.salesperson.first_name} ${sale.salesperson.last_name}`}</td>
-              <td>{sale.salesperson.employee_number}</td>
-              <td>{`${sale.customer.first_name} ${sale.customer.last_name}`}</td>
-              <td>{sale.automobile.vin}</td>
-              <td>{`$${sale.price}`}</td>
+              <td>{sale.sales_person.name}</td>
+              <td>{sale.sales_person.employee_number}</td>
+              <td>{sale.customer.name}</td>
+              <td>{sale.automobile}</td>
             </tr>
-          ))}
+          );
+        } )}
+
         </tbody>
       </table>
     </div>
