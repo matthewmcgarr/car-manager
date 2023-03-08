@@ -99,8 +99,12 @@ def api_list_services(request):
                 content["vip"] = True
             except AutomobileVO.DoesNotExist:
                 content["vip"] = False
-
-            service = Service.objects.create(**content)
+            try:
+                service = Service.objects.create(**content)
+            except:
+                response = JsonResponse({
+                    "message": "A service for this VIN already exists"
+                })
             return JsonResponse(
                 service,
                 encoder=ServiceEncoder,
@@ -145,10 +149,13 @@ def api_show_service(request, id):
         try:
             content = json.loads(request.body)
             service = Service.objects.get(id=id)
-            props = ["reason", "appointment_date", "customer_name", "completed", "tech",]
+            props = ["reason", "appointment_date", "customer_name", "technician", "vin"]
             for prop in props:
                 if prop in content:
                     setattr(service, prop, content[prop])
+                response.status_code = 404
+                return response
+
             service.save()
             return JsonResponse(
                 service,
