@@ -5,42 +5,9 @@ import json
 from common.json import ModelEncoder
 
 from .models import AutomobileVO, Technician, Service
-# Create your views here.
-
-class TechnicianEncoder(ModelEncoder):
-    model = Technician
-    properties = [
-        "id",
-        "name",
-        "employee_number",
-    ]
+from .encoders import TechnicianEncoder, AutomobileVOEncoder, ServiceEncoder
 
 
-class ServiceEncoder(ModelEncoder):
-    model = Service
-    properties = [
-        "id",
-        "reason",
-        "appointment_time",
-        "customer_name",
-        "completed",
-        "tech",
-        ]
-
-    encoders = {
-        "tech": TechnicianEncoder(),
-    }
-
-
-class AutomobileVOEncoder(ModelEncoder):
-    model = AutomobileVO
-    properties = [
-        "id",
-        "vin",
-        "import_href",
-    ]
-
-# Get/Post for Technician
 @require_http_methods(["GET", "POST"])
 def api_list_technicians(request):
     if request.method == "GET":
@@ -50,14 +17,22 @@ def api_list_technicians(request):
             encoder=TechnicianEncoder
         )
     else:
-        content = json.loads(request.body)
-        technician = Technician.objects.create(**content)
-        return JsonResponse(
-            technician,
-            encoder=TechnicianEncoder
-        )
+        try:
+            content = json.loads(request.body)
+            technician = Technician.objects.create(**content)
+            return JsonResponse(
+                technician,
+                encoder=TechnicianEncoder,
+                safe=False
+            )
+        except:
+            response = JsonResponse({
+                "message": "Could not create a new Tech"
+            })
+            response.status_code = 404
+            return response
 
-# Delete/Get/Put for Technician
+
 @require_http_methods(["DELETE", "GET", "PUT"])
 def api_show_technician(request, id):
     if request.method == "GET":
@@ -104,7 +79,7 @@ def api_show_technician(request, id):
                 {"message": "Invalid Tech ID"}
             )
 
-# Get/Post for Service
+
 @require_http_methods(["GET", "POST"])
 def api_list_services(request):
     if request.method == "GET":
@@ -114,10 +89,33 @@ def api_list_services(request):
             encoder=ServiceEncoder
         )
     else:
-        content = json.loads(request.body)
+        try:
+            content = json.loads(request.body)
+            technician = Technician.objects.get(id=content["technician"])
+            content["technician"] = technician
+
+            try:
+                vin = AutomobileVO.objects.get(vin=content["vin"])
+                content["vip"] = True
+            except AutomobileVO.DoesNotExist:
+                content["vip"] = False
+
+            service = Service.objects.create(**content)
+            return JsonResponse(
+                service,
+                encoder=ServiceEncoder,
+                safe=False,
+                )
+        except Exception as e:
+            print(e)
+            response = JsonResponse(
+                {"message:" "Could not create a new Service"}
+            )
+            response.status_code = 404
+            return response
 
 
-# Delete/Get/Put for Service
+
 @require_http_methods(["DELETE", "GET", "PUT"])
 def api_show_service(request, id):
     if request.method == "GET":
@@ -162,7 +160,7 @@ def api_show_service(request, id):
             response.status_code = 404
             return response
 
-# Get Automobiles
+
 @require_http_methods(["GET", ])
 def api_list_automobiles(request):
     if request.method == "GET":

@@ -1,5 +1,4 @@
-import { NavLink } from 'react-router-dom';
-
+import { NavLink } from "react-router-dom";
 function Nav() {
   return (
     <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
@@ -29,6 +28,55 @@ function Nav() {
               >
                 Home
               </NavLink>
+            </li>
+            <li class="nav-item dropdown">
+              <a
+                class="nav-link dropdown-toggle"
+                href="#"
+                role="button"
+                data-bs-toggle="dropdown"
+                aria-expanded="false"
+              >
+                Services
+              </a>
+              <ul class="dropdown-menu">
+                <li className="nav-item">
+                  <NavLink
+                    className="dropdown-item"
+                    aria-current="page"
+                    to="/services"
+                  >
+                    Current Services
+                  </NavLink>
+                </li>
+                <li>
+                  <NavLink
+                    className="dropdown-item"
+                    aria-current="page"
+                    to="/services/new"
+                  >
+                    New Service
+                  </NavLink>
+                </li>
+                <li>
+                  <NavLink
+                    className="dropdown-item"
+                    aria-current="page"
+                    to="/technicians/new"
+                  >
+                    New Technician
+                  </NavLink>
+                </li>
+                <li>
+                  <NavLink
+                    className="dropdown-item"
+                    aria-current="page"
+                    to="/services/history"
+                  >
+                    Service History
+                  </NavLink>
+                </li>
+              </ul>
             </li>
             <li className="nav-item">
               <NavLink

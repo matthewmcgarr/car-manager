@@ -6,6 +6,38 @@ function TechnicianForm() {
     employee_number: "",
   });
 
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+
+    const url = `http://localhost:8080/api/technicians/`;
+    const fetchConfig = {
+      method: "post",
+      body: JSON.stringify(formData),
+      headers: {
+        "Content-Type": "application/json",
+      },
+    };
+
+    const response = await fetch(url, fetchConfig);
+
+    if (response.ok) {
+      setFormData({
+        name: "",
+        employee_number: "",
+      });
+    }
+  };
+
+  const handleFormChange = (e) => {
+    const value = e.target.value;
+    const inputName = e.target.name;
+
+    setFormData({
+      ...formData,
+      [inputName]: value,
+    });
+  };
+
   return (
     <div className="container">
       <div className="row">
@@ -29,12 +61,12 @@ function TechnicianForm() {
               <div className="form-floating mb-3">
                 <input
                   onChange={handleFormChange}
-                  value={formData.name}
+                  value={formData.employee_number}
                   placeholder="Employee Number"
                   required
                   type="text"
-                  name="employee-number"
-                  id="employee-number"
+                  name="employee_number"
+                  id="employee_number"
                   className="form-control"
                 />
                 <label htmlFor="employee number">Employee Number</label>
