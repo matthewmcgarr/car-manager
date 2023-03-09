@@ -22,8 +22,6 @@ function Nav() {
             <li className="nav-item">
               <NavLink
                 className="nav-link"
-                activeClassName="active"
-                exact
                 to="/"
               >
                 Home
@@ -81,8 +79,6 @@ function Nav() {
             <li className="nav-item">
               <NavLink
                 className="nav-link"
-                activeClassName="active"
-                exact
                 to="/Salesperson/New"
               >
                 Sales Person
@@ -91,8 +87,6 @@ function Nav() {
             <li className="nav-item">
               <NavLink
                 className="nav-link"
-                activeClassName="active"
-                exact
                 to="/Potentialcustomer/New"
               >
                 Potential Customer
@@ -101,8 +95,6 @@ function Nav() {
             <li className="nav-item">
               <NavLink
                 className="nav-link"
-                activeClassName="active"
-                exact
                 to="/SaleRecord/New"
               >
                 Sale Record
@@ -111,8 +103,6 @@ function Nav() {
             <li className="nav-item">
               <NavLink
                 className="nav-link"
-                activeClassName="active"
-                exact
                 to="/AllSales/New"
               >
                 All Sales
@@ -121,8 +111,6 @@ function Nav() {
             <li className="nav-item">
               <NavLink
                 className="nav-link"
-                activeClassName="active"
-                exact
                 to="/salespeople/history/New"
               >
                 Sales Person's History

@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
 
 function CreateSaleRecord() {
-const [vin, setVin] = useState([]);
-const [salesperson, setSalesperson] = useState([]);
+const [automobiles, setAutomobiles] = useState([]);
+const [salespersons, setSalespersons] = useState([]);
 const [customers, setCustomers] = useState([]);
 const [formData, setFormData] = useState({
   automobile: '',
@@ -12,22 +12,22 @@ const [formData, setFormData] = useState({
 });
 
 
-const getVin = async () => {
+const getAutomobiles = async () => {
   const response = await fetch('http://localhost:8100/api/automobiles/');
   if (response.ok) {
     const data = await response.json();
     console.log("autos;", data)
-    setVin(data.vin);
+    setAutomobiles(data.automobiles);
   }
 }
 
 
-const getSalesperson = async () => {
+const getSalespersons = async () => {
   const response = await fetch('http://localhost:8090/api/salespeople/');
   if (response.ok) {
     const data = await response.json();
     console.log("salespeople;", data)
-    setSalesperson(data.salesperson);
+    setSalespersons(data.salespersons);
   }
 }
 
@@ -43,8 +43,8 @@ const getCustomers = async () => {
 
 
 useEffect(() => {
-  getVin();
-  getSalesperson();
+  getAutomobiles();
+  getSalespersons();
   getCustomers();
 }, []);
 
@@ -53,24 +53,24 @@ useEffect(() => {
 
 const handleSubmit = async (event) => {
   event.preventDefault();
-  const response = await fetch('http://localhost:8090/api/sales/', {
+  const url = await fetch('http://localhost:8090/api/sales/')
+  const fetchConfig = {
     method: 'POST',
+    body: JSON.stringify(formData),
     headers: {
       'Content-Type': 'application/json',
     },
-    body: JSON.stringify(formData)
-  });
+  };
+  const response = await fetch(url, fetchConfig)
   if (response.ok) {
     setFormData({
       automobile: '',
-      salesperson: '',
+      sales_person: '',
       customer: '',
       price: ''
     });
   }
 }
-
-
 
 
 const handleFormChange = (event) => {
@@ -92,25 +92,25 @@ return (
         <form onSubmit={handleSubmit} id="create-sale-record-form">
           <div className="form-group">
             <label htmlFor="automobile">Automobile:</label>
-            <select
+            {/* <select
               className="form-control"
-              id="vin"
+              id="automobile"
               required
-              name="vin"
+              name="automobile"
               value={formData.automobile}
               onChange={handleFormChange}
             >
               <option value="">Select automobile...</option>
-              {vin && vin.map(autos => {
+              {automobiles.map(automobile => {
                 return (
-                  <option key={autos.id} value={autos.id}> {autos.vin} </option>
+                  <option key={automobile.id} value={automobile.id}> {automobile.vin} </option>
                 )
               })}
-            </select>
+            </select> */}
           </div>
           <div className="form-group">
             <label htmlFor="salesperson">Sales Person:</label>
-            <select
+            {/* <select
               className="form-control"
               id="sales_person"
               required
@@ -119,12 +119,12 @@ return (
               onChange={handleFormChange}
             >
               <option value="">Select sales person...</option>
-              {salesperson.map(salesperson => {
+              {salespersons.map(salesperson => {
                 return (
                   <option key={salesperson.id} value={salesperson.id}> {salesperson.name} </option>
                 )
               })}
-            </select>
+            </select> */}
           </div>
           <div className="form-group">
             <label
@@ -140,7 +140,7 @@ return (
           <option value="">Select customers...</option>
           {customers.map(customer => {
             return (
-              <option key={customer.id} value={customer.name}> {customer.address} {customer.phone_number} </option>
+              <option key={customer.id} value={customer.id}>{customer.name} </option>
             )
           })}
         </select>
