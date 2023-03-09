@@ -9,8 +9,8 @@ function AddPotentialCustomerForm() {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-
-    const potentialCustomersUrl = 'http://localhost:8000/api/potentialcustomers/';
+    console.log("formData;", formData);
+    const potentialCustomersUrl = 'http://localhost:8090/api/potentialcustomers/';
 
     const fetchConfig = {
       method: "post",
@@ -55,7 +55,7 @@ function AddPotentialCustomerForm() {
               <label htmlFor="address">Address</label>
             </div>
             <div className="form-floating mb-3">
-              <input onChange={handleFormChange} value={formData.phone} placeholder="Phone Number" required type="text" name="phone" id="phone" className="form-control" />
+              <input onChange={handleFormChange} value={formData.phone_number} placeholder="Phone Number" required type="text" name="phone_number" id="phone_number" className="form-control" />
               <label htmlFor="phone">Phone Number</label>
             </div>
             <button className="btn btn-primary" onClick={handleSubmit}>Add Potential Customer</button>

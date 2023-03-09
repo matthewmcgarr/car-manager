@@ -1,6 +1,4 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import AddSalesPersonForm from "./AddSalesPersonForm";
-import AddSalesPerson from "./AddSalesPersonForm";
 import MainPage from "./MainPage";
 import Nav from "./Nav";
 import AddPotentialCustomerForm from "./PotentialCustomerForm";
@@ -28,7 +26,6 @@ function App() {
             path="Potentialcustomer"
             element={<AddPotentialCustomerForm />}
           />
-          <Route path="AddSalesPerson" element={<AddSalesPerson />} />
           <Route
             path="salespeople/history/New"
             element={<SalesPersonSales />}
