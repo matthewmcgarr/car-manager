@@ -1,24 +1,22 @@
 import React, { useEffect, useState } from "react";
 
-function ServiceForm() {
-  const [technicians, setTechnicians] = useState([]);
+function AutomobileForm() {
+  const [models, setModels] = useState([]);
 
   const [formData, setFormData] = useState({
+    color: "",
+    year: "",
     vin: "",
-    customer_name: "",
-    date: "",
-    time: "",
-    reason: "",
-    technician: "",
+    model: "",
   });
 
   const fetchData = async () => {
-    const url = `http://localhost:8080/api/technicians/`;
+    const url = `http://localhost:8100/api/models/`;
     const response = await fetch(url);
 
     if (response.ok) {
       const data = await response.json();
-      setTechnicians(data.technicians);
+      setModels(data.models);
     }
   };
 
@@ -29,7 +27,7 @@ function ServiceForm() {
   const handleSubmit = async (event) => {
     event.preventDefault();
 
-    const url = "http://localhost:8080/api/services/";
+    const url = `http://localhost:8100/api/automobiles/`;
 
     const fetchConfig = {
       method: "post",
@@ -38,15 +36,15 @@ function ServiceForm() {
         "Content-Type": "application/json",
       },
     };
+
     const response = await fetch(url, fetchConfig);
 
     if (response.ok) {
       setFormData({
+        color: "",
+        year: "",
         vin: "",
-        customer_name: "",
-        appointment_time: "",
-        reason: "",
-        technician: "",
+        model: "",
       });
     }
   };
@@ -64,8 +62,34 @@ function ServiceForm() {
     <div className="row">
       <div className="offset-3 col-6">
         <div className="shadow p-4 mt-4">
-          <h1>Create a new Service Appointment!</h1>
+          <h1>Add Automobile to Inventory</h1>
           <form onSubmit={handleSubmit} id="create-service-form">
+            <div className="form-floating mb-3">
+              <input
+                onChange={handleFormChange}
+                value={formData.color}
+                placeholder="Color"
+                required
+                type="text"
+                name="color"
+                id="namvine"
+                className="form-control"
+              />
+              <label htmlFor="color">Color</label>
+            </div>
+            <div className="form-floating mb-3">
+              <input
+                onChange={handleFormChange}
+                value={formData.year}
+                placeholder="Year"
+                required
+                type="text"
+                name="year"
+                id="year"
+                className="form-control"
+              />
+              <label htmlFor="year">Year</label>
+            </div>
             <div className="form-floating mb-3">
               <input
                 onChange={handleFormChange}
@@ -74,77 +98,25 @@ function ServiceForm() {
                 required
                 type="text"
                 name="vin"
-                id="namvine"
+                id="vin"
                 className="form-control"
               />
-              <label htmlFor="vin">VIN</label>
-            </div>
-            <div className="form-floating mb-3">
-              <input
-                onChange={handleFormChange}
-                value={formData.customer_name}
-                placeholder="Customer"
-                required
-                type="text"
-                name="customer_name"
-                id="customer_name"
-                className="form-control"
-              />
-              <label htmlFor="customer_name">Customer Name</label>
-            </div>
-            <div className="form-floating mb-3">
-              <input
-                onChange={handleFormChange}
-                value={formData.date}
-                placeholder="Date"
-                required
-                type="date"
-                name="date"
-                id="date"
-                className="form-control"
-              />
-              <label htmlFor="date">Service Date</label>
-            </div>
-            <div className="form-floating mb-3">
-              <input
-                onChange={handleFormChange}
-                value={formData.time}
-                placeholder="Time"
-                required
-                type="time"
-                name="time"
-                id="time"
-                className="form-control"
-              />
-              <label htmlFor="time">Service Time</label>
-            </div>
-            <div className="form-floating mb-3">
-              <input
-                onChange={handleFormChange}
-                value={formData.reason}
-                placeholder="Reason"
-                required
-                type="text"
-                name="reason"
-                id="reason"
-                className="form-control"
-              />
-              <label htmlFor="reason">Appointment Reason</label>
+              <label htmlFor="vin">Vin</label>
             </div>
             <div className="mb-3">
               <select
                 onChange={handleFormChange}
-                value={formData.technician}
+                value={formData.model}
                 required
-                name="technician"
-                id="technician"
+                name="model"
+                id="model"
                 className="form-select"
               >
-                <option value="">Assign a Tech</option>
-                {technicians.map((technician) => {
+                <option value="">Choose a Model</option>
+                {models.map((model) => {
                   return (
-                    <option key={technician.id} value={technician.id}>
-                      {technician.name}
+                    <option key={model.id} value={model.id}>
+                      {model.name}
                     </option>
                   );
                 })}
@@ -158,4 +130,4 @@ function ServiceForm() {
   );
 }
 
-export default ServiceForm;
+export default AutomobileForm;

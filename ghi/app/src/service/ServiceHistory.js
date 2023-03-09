@@ -105,7 +105,7 @@ const ServiceHistory = () => {
             <th>VIN</th>
             <th>Customer Name</th>
             <th>Tech</th>
-            <th>Appointment Time</th>
+            <th>Appointment Date</th>
             <th>Reason</th>
             <th>VIP</th>
             <th></th>
@@ -122,7 +122,7 @@ const ServiceHistory = () => {
                 <td>{service.vin}</td>
                 <td>{service.customer_name}</td>
                 <td>{service.technician.name}</td>
-                <td>{service.appointment_time}</td>
+                <td>{service.date}</td>
                 <td>{service.reason}</td>
                 <td>{service.vip ? "Yes" : "No"}</td>
               </tr>

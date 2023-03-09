@@ -149,12 +149,11 @@ def api_show_service(request, id):
         try:
             content = json.loads(request.body)
             service = Service.objects.get(id=id)
-            props = ["reason", "appointment_date", "customer_name", "technician", "vin"]
+            props = ["reason", "date", "time", "customer_name", "technician", "vin", "completed"]
             for prop in props:
                 if prop in content:
                     setattr(service, prop, content[prop])
-                response.status_code = 404
-                return response
+
 
             service.save()
             return JsonResponse(

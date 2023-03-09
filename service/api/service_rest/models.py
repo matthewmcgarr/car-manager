@@ -18,7 +18,8 @@ class Technician(models.Model):
 class Service(models.Model):
     vin = models.CharField(max_length=17, unique=True)
     reason = models.TextField()
-    appointment_time = models.DateTimeField(null=True)
+    date = models.DateField(null=True)
+    time = models.TimeField(null=True)
     vip = models.BooleanField(default=False)
     customer_name = models.CharField(max_length=200)
     completed = models.BooleanField(default=False)

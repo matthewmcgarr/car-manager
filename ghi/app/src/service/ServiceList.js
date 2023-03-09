@@ -18,7 +18,7 @@ const ServiceList = () => {
   }, []);
 
   const handleDelete = async (e) => {
-    const url = `http://localhost:8080/api/services/${e.target.id}`;
+    const url = `http://localhost:8080/api/services/${e.target.id}/`;
     const fetchConfig = {
       method: "Delete",
       headers: {
@@ -35,7 +35,7 @@ const ServiceList = () => {
   };
 
   const handleComplete = async (e) => {
-    const url = `http://localhost:8080/api/services/${e.target.id}`;
+    const url = `http://localhost:8080/api/services/${e.target.id}/`;
     const fetchConfig = {
       method: "PUT",
       body: JSON.stringify({ completed: true }),
@@ -56,60 +56,68 @@ const ServiceList = () => {
   };
 
   return (
-    <table className="table table-striped">
-      <thead>
-        <tr>
-          <th>Appointment ID</th>
-          <th>VIN</th>
-          <th>Customer Name</th>
-          <th>Tech</th>
-          <th>Appointment Time</th>
-          <th>Reason</th>
-          <th>VIP</th>
-          <th>Completed</th>
-          <th></th>
-        </tr>
-      </thead>
-      <tbody>
-        {services.map((service) => {
-          console.log(service);
-          return (
-            <tr key={service.id}>
-              <td>
-                <Link to={`/services/${service.id}`}>{service.id}</Link>
-              </td>
-              <td>{service.vin}</td>
-              <td>{service.customer_name}</td>
-              <td>{service.technician.name}</td>
-              <td>{service.appointment_time}</td>
-              <td>{service.reason}</td>
-              <td>{service.vip ? "Yes" : "No"}</td>
-              <td>
-                <button
-                  onClick={handleComplete}
-                  id={service.id}
-                  className="btn btn-success"
-                >
-                  {service.completed
-                    ? "Mark as Not Completed"
-                    : "Mark as Completed"}
-                </button>
-              </td>
-              <td>
-                <button
-                  onClick={handleDelete}
-                  id={service.id}
-                  type="button"
-                  className="btn btn-danger"
-                >
-                  Delete Appointment
-                </button>
-              </td>
-            </tr>
-          );
-        })}
-      </tbody>
-    </table>
+    <>
+      <figure class="text-center">
+        <h1>Ongoing Services</h1>
+      </figure>
+
+      <table className="table table-striped">
+        <thead>
+          <tr>
+            <th>Appointment ID</th>
+            <th>VIN</th>
+            <th>Customer Name</th>
+            <th>Tech</th>
+            <th>Service Date</th>
+            <th>Service Time</th>
+            <th>Reason</th>
+            <th>VIP</th>
+            <th>Completed</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          {services.map((service) => {
+            if (!service.completed)
+              return (
+                <tr key={service.id}>
+                  <td>
+                    <Link to={`/services/${service.id}`}>{service.id}</Link>
+                  </td>
+                  <td>{service.vin}</td>
+                  <td>{service.customer_name}</td>
+                  <td>{service.technician.name}</td>
+                  <td>{service.date}</td>
+                  <td>{service.time}</td>
+                  <td>{service.reason}</td>
+                  <td>{service.vip ? "Yes" : "No"}</td>
+                  <td>
+                    <button
+                      onClick={handleComplete}
+                      id={service.id}
+                      className="btn btn-success"
+                    >
+                      {service.completed
+                        ? "Mark as Not Completed"
+                        : "Mark as Completed"}
+                    </button>
+                  </td>
+                  <td>
+                    <button
+                      onClick={handleDelete}
+                      id={service.id}
+                      type="button"
+                      className="btn btn-danger"
+                    >
+                      Delete Appointment
+                    </button>
+                  </td>
+                </tr>
+              );
+          })}
+        </tbody>
+      </table>
+    </>
   );
 };
 
