@@ -1,20 +1,20 @@
 import React, { useState, useEffect } from 'react';
 
 function SalesPersonSales() {
-  const [salespeople, setSalespeople] = useState([]);
+  const [salesperson, setSalesperson] = useState([]);
   const [selectedSalesperson, setSelectedSalesperson] = useState('');
   const [sales, setSales] = useState([]);
 
-  const getSalespeople = async () => {
+  const getSalesperson = async () => {
     const response = await fetch('http://localhost:8090/api/salespeople/');
     if (response.ok) {
       const data = await response.json();
-      setSalespeople(data.salespeople);
+      setSalesperson(data.sales_person);
     }
   }
 
   useEffect(() => {
-    getSalespeople();
+    getSalesperson();
   }, []);
 
   const handleSalespersonChange = async (event) => {
@@ -36,16 +36,16 @@ function SalesPersonSales() {
             <label htmlFor="salesperson">Select a sales person:</label>
             <select
               className="form-control"
-              id="salesperson"
+              id="sales_person"
               required
-              name="salesperson"
+              name="sales_person"
               value={selectedSalesperson}
               onChange={handleSalespersonChange}
             >
-              <option value="">Select salesperson...</option>
-              {salespeople.map(sp => {
+              <option value="">Select sales_person...</option>
+              {salesperson.map(sp => {
                 return (
-                  <option key={sp.id} value={sp.id}>{`${sp.first_name}`}</option>
+                  <option key={sp.id} value={sp.id}>{`${sp.name}`}</option>
                 )
               })}
             </select>
