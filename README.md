@@ -2,7 +2,7 @@
 
 Team:
 
-- Khalid - Auto Sales
+- Khalid - Sales
 - Matthew McGarr - Services
 
 ## Design
@@ -19,5 +19,12 @@ Lastly, VIP status is granted to customers who purchased their vehicle with us. 
 
 ## Sales microservice
 
-Explain your models and integration with the inventory
-microservice, here.
+In the sales microservice, vehicle models are a critical aspect of the application. A model represents a particular type of vehicle, such as a Honda Civic, and is generally defined by attributes such as make, model name, model year and so on.
+
+The integration of the models with the inventory microservice involves storing and retrieving information about the available vehicles in the inventory, including their model information. This information may include the quantity of vehicles available for each model, their location, pricing, and so on.
+
+The sales microservice can make API calls to the inventory microservice to retrieve the list of available vehicles and their associated model information. This data can then be used by the sales microservice to display relevant information to the users, such as available models, their prices, and locations. When a customer decides to purchase a vehicle, the sales microservice can initiate an API call to the inventory microservice to reserve the vehicle and decrement its quantity.
+
+Furthermore, in the sales microservice, the bounded context is the sales domain, which includes all the functionality related to managing the sales process, such as creating and managing sales orders, tracking inventory levels, and so on. By defining clear boundaries between different bounded contexts, we can ensure that each microservice is focused on a specific task and has clear responsibilities, which helps to simplify the development and maintenance of the system.
+
+Overall, the integration of vehicle models with the inventory microservice is essential for the successful operation of a sales microservice as it enables any sales team to have accurate and up-to-date information about available vehicles, which helps them make informed decisions and improve customer satisfaction.
