@@ -7,10 +7,8 @@ const ServiceDetail = () => {
 
   const getData = async () => {
     const resp = await fetch(`http://localhost:8080/api/services/${id}`);
-    console.log(resp);
     if (resp.ok) {
       const data = await resp.json();
-      console.log("data:", data);
       setService(data);
     }
   };

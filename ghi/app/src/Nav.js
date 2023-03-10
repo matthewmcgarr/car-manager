@@ -142,7 +142,6 @@ function Nav() {
                 </li>
               </ul>
             </li>
-          </ul>
             <li className="nav-item dropdown">
               <a
                 className="nav-link dropdown-toggle"

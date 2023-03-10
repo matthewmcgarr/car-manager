@@ -9,7 +9,6 @@ const [formData, setFormData] = useState({
 
   const handleSubmit = async (event) => {
    event.preventDefault();
-   console.log("formData;", formData);
    const url = 'http://localhost:8090/api/customers/';
 
 
@@ -22,7 +21,7 @@ const [formData, setFormData] = useState({
   };
 
   const response = await fetch(url, fetchConfig);
-  console.log("response;", response);
+
   if (response.ok) {
     setFormData({
       name: '',

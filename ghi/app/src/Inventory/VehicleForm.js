@@ -4,7 +4,7 @@ const VehicleModelForm = () => {
   const [formData, setFormData] = useState({
     name: '',
     picture_url: '',
-    manufacturer: '',
+    manufacturer_id: '',
   });
   const [manufacturers, setManufacturers] = useState([]);
 
@@ -36,7 +36,7 @@ const VehicleModelForm = () => {
       .then((response) => response.json())
       .then((data) => {
         console.log('Success:', data);
-        setFormData({ name: '', picture_url: '', manufacturer: '' });
+        setFormData({ name: '', picture_url: '', manufacturer_id: '' });
       })
       .catch((error) => {
         console.error('Error:', error);
@@ -77,8 +77,9 @@ const VehicleModelForm = () => {
 
             <div className="form-floating mb-3">
               <select
-                name="manufacturer"
-                value={formData.manufacturer}
+                name="manufacturer_id"
+                id ="manufacturer_id"
+                value={formData.manufacturer_id}
                 onChange={handleChange}
                 className="form-select"
                 required

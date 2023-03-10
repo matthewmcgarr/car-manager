@@ -8,7 +8,6 @@ function SalespersonForm() {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    console.log("formData;", formData);
     const url = 'http://localhost:8090/api/salespeople/';
 
     const fetchConfig = {
@@ -21,7 +20,6 @@ function SalespersonForm() {
     };
 
     const response = await fetch(url, fetchConfig);
-    console.log("response;", response);
     if (response.ok) {
       setFormData({
         name: '',
