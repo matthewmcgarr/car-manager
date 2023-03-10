@@ -2,13 +2,13 @@ import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 
 const AutomobileList = () => {
-  const [automobiles, setAutomobiles] = useState([]);
+  const [autos, setAutos] = useState([]);
 
   const getData = async () => {
     const resp = await fetch("http://localhost:8100/api/automobiles/");
     if (resp.ok) {
       const data = await resp.json();
-      setServices(data.automobiles);
+      setAutos(data.autos);
     }
   };
 
@@ -30,7 +30,7 @@ const AutomobileList = () => {
         </tr>
       </thead>
       <tbody>
-        {automobiles.map((automobile) => {
+        {autos.map((automobile) => {
           return (
             <tr key={automobile.id}>
               <td>{automobile.id}</td>

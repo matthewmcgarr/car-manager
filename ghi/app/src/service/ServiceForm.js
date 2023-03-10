@@ -44,7 +44,8 @@ function ServiceForm() {
       setFormData({
         vin: "",
         customer_name: "",
-        appointment_time: "",
+        date: "",
+        time: "",
         reason: "",
         technician: "",
       });

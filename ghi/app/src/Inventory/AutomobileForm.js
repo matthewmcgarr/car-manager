@@ -7,7 +7,7 @@ function AutomobileForm() {
     color: "",
     year: "",
     vin: "",
-    model: "",
+    model_id: "",
   });
 
   const fetchData = async () => {
@@ -26,7 +26,6 @@ function AutomobileForm() {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-
     const url = `http://localhost:8100/api/automobiles/`;
 
     const fetchConfig = {
@@ -44,7 +43,7 @@ function AutomobileForm() {
         color: "",
         year: "",
         vin: "",
-        model: "",
+        model_id: "",
       });
     }
   };
@@ -106,16 +105,16 @@ function AutomobileForm() {
             <div className="mb-3">
               <select
                 onChange={handleFormChange}
-                value={formData.model}
+                value={formData.model_id}
                 required
-                name="model"
-                id="model"
+                name="model_id"
+                id="model_id"
                 className="form-select"
               >
                 <option value="">Choose a Model</option>
                 {models.map((model) => {
                   return (
-                    <option key={model.id} value={model.id}>
+                    <option key={model.id} value={`${model.id}`}>
                       {model.name}
                     </option>
                   );

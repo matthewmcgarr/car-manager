@@ -101,15 +101,16 @@ def api_list_services(request):
                 content["vip"] = False
             try:
                 service = Service.objects.create(**content)
-            except:
-                response = JsonResponse({
-                    "message": "A service for this VIN already exists"
-                })
-            return JsonResponse(
+                return JsonResponse(
                 service,
                 encoder=ServiceEncoder,
                 safe=False,
                 )
+            except:
+                response = JsonResponse({
+                    "message": "A service for this VIN already exists"
+                })
+
         except Exception as e:
             print(e)
             response = JsonResponse(

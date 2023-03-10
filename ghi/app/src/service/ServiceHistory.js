@@ -10,7 +10,6 @@ const ServiceHistory = () => {
     const resp = await fetch("http://localhost:8080/api/services/");
     if (resp.ok) {
       const data = await resp.json();
-      console.log(data);
       setServices(data.services);
     }
   };
@@ -83,8 +82,11 @@ const ServiceHistory = () => {
 
   return (
     <>
+      <figure class="text-center">
+        <h1>Service History</h1>
+      </figure>
       <hr></hr>
-      <div class="input-group mb-3">
+      <div className="input-group mb-3">
         <select onChange={handleFilterCategory}>
           <option value="vin">Vin</option>
           <option value="customer_name">Customer</option>
@@ -93,7 +95,7 @@ const ServiceHistory = () => {
         </select>
         <input
           onChange={handleFilterChange}
-          class="form-control"
+          className="form-control"
           placeholder="search"
         />
       </div>
@@ -113,7 +115,6 @@ const ServiceHistory = () => {
         </thead>
         <tbody>
           {getServicesFiltered().map((service) => {
-            console.log(service);
             return (
               <tr key={service.id}>
                 <td>
@@ -122,7 +123,7 @@ const ServiceHistory = () => {
                 <td>{service.vin}</td>
                 <td>{service.customer_name}</td>
                 <td>{service.technician.name}</td>
-                <td>{service.date}</td>
+                <td>{service.date.date}</td>
                 <td>{service.reason}</td>
                 <td>{service.vip ? "Yes" : "No"}</td>
               </tr>

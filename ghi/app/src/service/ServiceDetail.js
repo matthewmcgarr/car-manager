@@ -48,9 +48,6 @@ const ServiceDetail = () => {
               Status:{" "}
               <span>{service.completed ? "Completed" : "Not Completed"}</span>
             </h4>
-            <h4>
-              Appointment Time: <span>{service.appointment_time}</span>
-            </h4>
 
             <h4>
               Technician:{" "}

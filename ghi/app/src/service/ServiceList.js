@@ -87,8 +87,8 @@ const ServiceList = () => {
                   <td>{service.vin}</td>
                   <td>{service.customer_name}</td>
                   <td>{service.technician.name}</td>
-                  <td>{service.date}</td>
-                  <td>{service.time}</td>
+                  <td>{service.date.date}</td>
+                  <td>{service.time.time}</td>
                   <td>{service.reason}</td>
                   <td>{service.vip ? "Yes" : "No"}</td>
                   <td>
