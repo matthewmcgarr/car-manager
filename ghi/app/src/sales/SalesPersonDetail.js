@@ -9,7 +9,6 @@ function SalesPersonDetail() {
     const resp = await fetch("http://localhost:8090/api/sales/");
     if (resp.ok) {
       const data = await resp.json();
-      console.log(data);
       setSales(data.sales);
       const filters = getAvailableFilters(data.sales);
       setAvailableFilters(filters);

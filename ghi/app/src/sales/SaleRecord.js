@@ -15,19 +15,16 @@ function CreateSaleRecord() {
       const salesPeopleResponse = await fetch("http://localhost:8090/api/salespeople");
       const salesPeopleData = await salesPeopleResponse.json();
       setSalesPeopleOptions(salesPeopleData);
-      console.log("sales people options:", salesPeopleData);
 
       const customersResponse = await fetch("http://localhost:8090/api/customers");
       const customersData = await customersResponse.json();
       setCustomerOptions(customersData);
-      console.log("customer options:", customersData);
     };
 
     const fetchAutos = async () => {
       const autosResponse = await fetch('http://localhost:8100/api/automobiles/');
       if (autosResponse.ok) {
         const autosData = await autosResponse.json();
-        console.log("autos;", autosData)
         setAutos(autosData.autos);
       }
     };
@@ -73,7 +70,6 @@ function CreateSaleRecord() {
     automobile: automobile,
     price: price
   };
-  console.log("form data:", data);
 
   const response = await fetch("http://localhost:8090/api/sales/", {
     method: "POST",
@@ -82,7 +78,6 @@ function CreateSaleRecord() {
     },
     body: JSON.stringify(data)
   });
-   console.log("response:", response);
 
   if (response.ok) {
     // reset form after successful submission

@@ -8,7 +8,6 @@ const ServiceList = () => {
     const resp = await fetch("http://localhost:8080/api/services/");
     if (resp.ok) {
       const data = await resp.json();
-      console.log(data);
       setServices(data.services);
     }
   };
