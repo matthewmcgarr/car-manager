@@ -1,14 +1,12 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import MainPage from "./MainPage";
 import Nav from "./Nav";
-
-import SalesPersonForm from "./sales/SalesPersonForm";
-import CreateSaleRecord from "./sales/CreateSalesRecordForm";
 import CustomerForm from "./sales/CustomerForm";
 import CreateSaleRecord from "./sales/SaleRecord";
 import SalesList from "./sales/SaleList";
+import SalesPersonDetail from "./sales/SalesPersonDetail";
+import SalesPersonForm from "./sales/SalesPersonForm";
 
-import ServiceDetail from "./service/ServiceDetail";
 import ServiceList from "./service/ServiceList";
 import ServiceForm from "./service/ServiceForm";
 import ServiceHistory from "./service/ServiceHistory";

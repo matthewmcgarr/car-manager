@@ -156,32 +156,31 @@ def api_show_customer(request, id):
 # Get/Post for Sales
 @require_http_methods(["GET", "POST"])
 def api_list_sales(request):
-   if request.method == "GET":
-       sales = Sale.objects.all()
-       return JsonResponse(
-           {"sales": list(sales)},
-           encoder=SaleEncoder,
-           safe=False,
-       )
-   else:
-      try:
-          content = json.loads(request.body)
-          automobile = AutomobileVO.objects.get(id=content['automobile'])
-          salesperson = SalesPersons.objects.get(id=content['sales_person'])
-          customer = Customer.objects.get(id=content['customer'])
-          sale = Sale.objects.create(automobile=automobile, sales_person=salesperson, customer=customer, price=content['price'])
-          return JsonResponse(
-              sale,
-              encoder=SaleEncoder,
-              safe=False
-          )
-      except:
-          return JsonResponse(
-              {"error": "Failed to create sale record."},
-              status=400
-          )
-
-
+    if request.method == "GET":
+        sales = Sale.objects.all()
+        return JsonResponse(
+            {"sales": list(sales)},
+            encoder=SaleEncoder,
+            safe=False,
+        )
+    else:
+        try:
+            content = json.loads(request.body)
+            automobile = AutomobileVO.objects.get(id=content['automobile'])
+            salesperson = SalesPersons.objects.get(id=content['sales_person'])
+            customer = Customer.objects.get(id=content['customer'])
+            sale = Sale.objects.create(automobile=automobile, sales_person=salesperson, customer=customer, price=content['price'])
+            return JsonResponse(
+                {"sale": sale},
+                encoder=SaleEncoder,
+                safe=False
+            )
+        except Exception as e:
+            print(e)
+            return JsonResponse(
+                {"error": "Failed to create sale record."},
+                status=404
+            )
 
 
 # Get/PUT,DELETE for Sales

@@ -1,4 +1,5 @@
 import { NavLink } from "react-router-dom";
+
 function Nav() {
   return (
     <nav className="navbar navbar-expand-lg navbar-light bg-light">
@@ -19,7 +20,7 @@ function Nav() {
           <span className="navbar-toggler-icon"></span>
         </button>
         <div className="collapse navbar-collapse" id="navbarNav">
-          <ul className="navbar-nav">
+          <div className="navbar-nav me-auto">
             <li className="nav-item">
               <NavLink className="nav-link" to="/">
                 Home
@@ -73,31 +74,6 @@ function Nav() {
                   </NavLink>
                 </li>
               </ul>
-            </li>
-            <li className="nav-item">
-              <NavLink className="nav-link" to="/Salesperson/New">
-                Sales Person
-              </NavLink>
-            </li>
-            <li className="nav-item">
-              <NavLink className="nav-link" to="/Potentialcustomer/New">
-                Potential Customer
-              </NavLink>
-            </li>
-            <li className="nav-item">
-              <NavLink className="nav-link" to="/SaleRecord/New">
-                Sale Record
-              </NavLink>
-            </li>
-            <li className="nav-item">
-              <NavLink className="nav-link" to="/AllSales/New">
-                All Sales
-              </NavLink>
-            </li>
-            <li className="nav-item">
-              <NavLink className="nav-link" to="/salespeople/history/New">
-                Sales Person's History
-              </NavLink>
             </li>
             <li className="nav-item dropdown">
               <a
@@ -167,6 +143,55 @@ function Nav() {
               </ul>
             </li>
           </ul>
+            <li className="nav-item dropdown">
+              <a
+                className="nav-link dropdown-toggle"
+                href="#"
+                id="navbarDropdownMenuLink"
+                role="button"
+                data-bs-toggle="dropdown"
+                aria-expanded="false"
+              >
+                Sales
+              </a>
+              <ul
+                className="dropdown-menu"
+                aria-labelledby="navbarDropdownMenuLink"
+              >
+                <li>
+                  <NavLink className="dropdown-item" to="/Salesperson/New">
+                    Sales Person
+                  </NavLink>
+                </li>
+                <li>
+                  <NavLink
+                    className="dropdown-item"
+                    to="/Customer/New"
+                  >
+                    Potential Customer
+                  </NavLink>
+                </li>
+                <li>
+                  <NavLink className="dropdown-item" to="/SaleRecord/New">
+                    Sale Record
+                  </NavLink>
+                </li>
+                <li>
+                  <NavLink className="dropdown-item" to="/SaleList/New">
+                    All Sales
+                  </NavLink>
+                </li>
+                <li>
+                  <NavLink
+                    className="dropdown-item"
+                    to="/SalesPersonDetail/New"
+                  >
+                    Sales Person's History
+                  </NavLink>
+                </li>
+              </ul>
+            </li>
+          </div>
         </div>
       </div>
     </nav>
