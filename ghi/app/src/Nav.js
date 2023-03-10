@@ -142,7 +142,7 @@ function Nav() {
                 </li>
               </ul>
             </li>
-          </ul>
+
             <li className="nav-item dropdown">
               <a
                 className="nav-link dropdown-toggle"
@@ -164,10 +164,7 @@ function Nav() {
                   </NavLink>
                 </li>
                 <li>
-                  <NavLink
-                    className="dropdown-item"
-                    to="/Customer/New"
-                  >
+                  <NavLink className="dropdown-item" to="/Customer/New">
                     Potential Customer
                   </NavLink>
                 </li>
