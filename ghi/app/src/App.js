@@ -1,10 +1,10 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import MainPage from "./MainPage";
 import Nav from "./Nav";
-import AddPotentialCustomerForm from "./sales/PotentialCustomerForm";
-import CreateSaleRecord from "./sales/CreateSalesRecordForm";
-import ListSales from "./sales/ListAllSales";
-import SalesPersonSales from "./sales/SalesPersonSales";
+import CustomerForm from "./sales/CustomerForm";
+import CreateSaleRecord from "./sales/SaleRecord";
+import SalesList from "./sales/SaleList";
+import SalesPersonDetail from "./sales/SalesPersonDetail";
 import ServiceList from "./service/ServiceList";
 import ServiceForm from "./service/ServiceForm";
 import ServiceHistory from "./service/ServiceHistory";
@@ -12,24 +12,24 @@ import TechnicianForm from "./service/TechnicianForm";
 import TechnicianList from "./service/TechnicianList";
 import ServiceDetail from "./service/ServiceDetail";
 import SalesPersonForm from "./sales/SalesPersonForm";
-
+import ManufacturerList from "./Inventory/ManufacturerList";
+import VehicleForm from "./Inventory/VehicleForm";
+import VehicleList from "./Inventory/VehicleList";
 function App() {
   return (
     <BrowserRouter>
       <Nav />
       <div className="container">
         <Routes>
-          <Route
-            path="salespeople/history/New"
-            element={<SalesPersonSales />}
-          />
-          <Route path="AllSales/New" element={<ListSales />} />
+          <Route path="SalesPersonDetail/New" element={<SalesPersonDetail />} />
+          <Route path="SaleList/New" element={<SalesList />} />
           <Route path="SaleRecord/New" element={<CreateSaleRecord />} />
-          <Route
-            path="Potentialcustomer/New"
-            element={<AddPotentialCustomerForm />}
-          />
+          <Route path="Customer/New" element={<CustomerForm />} />
           <Route path="Salesperson/New" element={<SalesPersonForm />} />
+
+          <Route path="Inventory/" element={<ManufacturerList />} />
+          <Route path="Inventory/Vehicle" element={<VehicleForm />} />
+          <Route path="Inventory/Vehiclelist" element={<VehicleList />} />
 
           <Route path="/" element={<MainPage />} />
           <Route path="services">

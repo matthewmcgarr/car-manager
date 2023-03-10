@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-function AddPotentialCustomerForm() {
+function CustomerForm() {
 const [formData, setFormData] = useState({
   name: '',
   address: '',
@@ -68,4 +68,4 @@ return (
 );
 }
 
-export default AddPotentialCustomerForm;
+export default CustomerForm;

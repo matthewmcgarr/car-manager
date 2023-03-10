@@ -1,7 +1,8 @@
 import { NavLink } from "react-router-dom";
+
 function Nav() {
   return (
-    <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
+    <nav className="navbar navbar-expand-lg navbar-light bg-light">
       <div className="container-fluid">
         <NavLink className="navbar-brand" to="/">
           CarCar
@@ -18,18 +19,15 @@ function Nav() {
           <span className="navbar-toggler-icon"></span>
         </button>
         <div className="collapse navbar-collapse" id="navbarNav">
-          <ul className="navbar-nav ms-auto mb-2 mb-lg-0">
+          <div className="navbar-nav me-auto">
             <li className="nav-item">
-              <NavLink
-                className="nav-link"
-                to="/"
-              >
+              <NavLink className="nav-link" to="/">
                 Home
               </NavLink>
             </li>
-            <li class="nav-item dropdown">
+            <li className="nav-item dropdown">
               <a
-                class="nav-link dropdown-toggle"
+                className="nav-link dropdown-toggle"
                 href="#"
                 role="button"
                 data-bs-toggle="dropdown"
@@ -37,7 +35,7 @@ function Nav() {
               >
                 Services
               </a>
-              <ul class="dropdown-menu">
+              <ul className="dropdown-menu">
                 <li className="nav-item">
                   <NavLink
                     className="dropdown-item"
@@ -76,47 +74,55 @@ function Nav() {
                 </li>
               </ul>
             </li>
-            <li className="nav-item">
-              <NavLink
-                className="nav-link"
-                to="/Salesperson/New"
+            <li className="nav-item dropdown">
+              <a
+                className="nav-link dropdown-toggle"
+                href="#"
+                id="navbarDropdownMenuLink"
+                role="button"
+                data-bs-toggle="dropdown"
+                aria-expanded="false"
               >
-                Sales Person
-              </NavLink>
-            </li>
-            <li className="nav-item">
-              <NavLink
-                className="nav-link"
-                to="/Potentialcustomer/New"
+                Sales
+              </a>
+              <ul
+                className="dropdown-menu"
+                aria-labelledby="navbarDropdownMenuLink"
               >
-                Potential Customer
-              </NavLink>
+                <li>
+                  <NavLink className="dropdown-item" to="/Salesperson/New">
+                    Sales Person
+                  </NavLink>
+                </li>
+                <li>
+                  <NavLink
+                    className="dropdown-item"
+                    to="/Customer/New"
+                  >
+                    Potential Customer
+                  </NavLink>
+                </li>
+                <li>
+                  <NavLink className="dropdown-item" to="/SaleRecord/New">
+                    Sale Record
+                  </NavLink>
+                </li>
+                <li>
+                  <NavLink className="dropdown-item" to="/SaleList/New">
+                    All Sales
+                  </NavLink>
+                </li>
+                <li>
+                  <NavLink
+                    className="dropdown-item"
+                    to="/SalesPersonDetail/New"
+                  >
+                    Sales Person's History
+                  </NavLink>
+                </li>
+              </ul>
             </li>
-            <li className="nav-item">
-              <NavLink
-                className="nav-link"
-                to="/SaleRecord/New"
-              >
-                Sale Record
-              </NavLink>
-            </li>
-            <li className="nav-item">
-              <NavLink
-                className="nav-link"
-                to="/AllSales/New"
-              >
-                All Sales
-              </NavLink>
-            </li>
-            <li className="nav-item">
-              <NavLink
-                className="nav-link"
-                to="/salespeople/history/New"
-              >
-                Sales Person's History
-              </NavLink>
-            </li>
-          </ul>
+          </div>
         </div>
       </div>
     </nav>
